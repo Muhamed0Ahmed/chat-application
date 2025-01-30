@@ -2,7 +2,7 @@ import express from "express";
 import {
   validateUserRegister,
   validateUserUpdate,
-} from "../middleware/vlidateRegister.js";
+} from "../middleware/userRequestsMiddleware.js";
 import {
   addFriend,
   deleteUser,
@@ -13,18 +13,17 @@ import {
   removeFriend,
   update,
 } from "../controllers/userControllers.js";
-import { userUpdateSchema } from "../models/validationSchema.js";
+import { userUpdateSchema } from "../models/userRequestsSchema.js";
 import { authenticatJWT } from "../middleware/auth.js";
 
-const router = express.Router();
-router.get("/profile",authenticatJWT, getMyProfile);
-router.get("/:id",authenticatJWT ,getProfileById);
-router.post("/register", validateUserRegister, registerUser);
-router.post("/login", login);
-router.put("/profile", validateUserUpdate, update);
-// router.get("/profile", getProfile)
-router.post("/addfr", authenticatJWT, addFriend);
-router.patch("/remfr", authenticatJWT, removeFriend);
-router.delete('/:id',authenticatJWT,deleteUser );
+const userRouter = express.Router();
+userRouter.get("/profile", authenticatJWT, getMyProfile);
+userRouter.get("/:id", authenticatJWT, getProfileById);
+userRouter.post("/register", validateUserRegister, registerUser);
+userRouter.post("/login", login);
+userRouter.put("/profile", validateUserUpdate, update);
+userRouter.post("/addfr", authenticatJWT, addFriend);
+userRouter.patch("/remfr", authenticatJWT, removeFriend);
+userRouter.delete("/:id", authenticatJWT, deleteUser);
 
-export default router;
+export default userRouter;
