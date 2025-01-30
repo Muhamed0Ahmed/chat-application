@@ -4,7 +4,7 @@ import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
 import dotenv from "dotenv";
-import apiRoutes from "./routes/api.js";
+import apiRoutes from "./routes/usersRouter.js";
 
 //config dotenv
 dotenv.config();
@@ -30,7 +30,7 @@ mongoose
 // });
 
 // Define All Route uses
-app.use("/api", apiRoutes);
+app.use("/api/users", apiRoutes);
 
 // // Socket.io setup
 io.on("connection", (socket) => {

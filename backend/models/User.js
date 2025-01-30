@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+// const friendSchema = new mongoose.Schema({
+//   id:{type:String, required:true},
+//   username: { type: String, required: true },
+//   email: { type: String, required: true },
+//   status:{type:String, required:true},
+//   profilePicture:{type:String, required:true},
 
+// });
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -50,6 +57,7 @@ const userSchema = new mongoose.Schema({
       ref: "User ", // Reference to other users (for friend lists)
     },
   ],
+  // friends:[friendSchema],
   blockedUsers: [
     {
       type: mongoose.Schema.Types.ObjectId,
